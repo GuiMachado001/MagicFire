@@ -209,6 +209,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 37fc834d30add404c91c79854990df8e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 898483978}
+    - targetCorrespondingSourceObject: {fileID: 7878350319992209165, guid: 37fc834d30add404c91c79854990df8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 726311375}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -2253911629886400664, guid: 37fc834d30add404c91c79854990df8e, type: 3}
       insertIndex: -1
@@ -477,6 +480,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &726311374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726311375}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &726311375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726311374}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0865, y: 0.0482, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1020712666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &898483977
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89a3ae6088cb694ab24619c612a4afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 726311375}
+  fireBallPrefab: {fileID: 809145446417353561, guid: 46fb3fafc06e4614daf17c015fc4f14f, type: 3}
 --- !u!4 &1020712666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: 37fc834d30add404c91c79854990df8e, type: 3}
@@ -636,7 +672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1891615334
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -5,7 +5,11 @@ public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
     private PlayerControls controls;
+
     private bool isCasting = false;
+
+    public Transform firePoint;
+    public GameObject fireBallPrefab;
 
     void Awake()
     {
@@ -29,19 +33,24 @@ public class PlayerCombat : MonoBehaviour
         if (isCasting) return;
 
         isCasting = true;
-        animator.SetTrigger("Decharge");
+        animator.SetBool("isCasting", true);
+        animator.SetFloat("speed", 0);
     }
 
-    void Update()
+    public void ShootFireball()
     {
-        if (isCasting)
-        {
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        GameObject fireball = Instantiate(fireBallPrefab, firePoint.position, Quaternion.identity);
 
-            if (stateInfo.IsName("Wizard Decharge_Clip") && stateInfo.normalizedTime >= 0.95f)
-            {
-                isCasting = false;
-            }
-        }
+        Fireball fb = fireball.GetComponent<Fireball>();
+        Vector2 direction = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        fb.direction = direction;
     }
+
+
+    public void EndCast()
+    {
+        isCasting = false;
+        animator.SetBool("isCasting", false);
+    }
+
 }
