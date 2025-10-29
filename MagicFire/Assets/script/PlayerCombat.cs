@@ -1,45 +1,47 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
+    private PlayerControls controls;
     private bool isCasting = false;
-    private const KeyCode ATTACK_KEY = KeyCode.JoystickButton2; 
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
+        controls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+        controls.Player.Spell.performed += ctx => StartCasting();
+    }
+
+    private void OnDisable()
+    {
+        controls.Player.Disable();
+    }
+
+    private void StartCasting()
+    {
+        if (isCasting) return;
+
+        isCasting = true;
+        animator.SetTrigger("Decharge");
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(ATTACK_KEY) && !isCasting)
-        {
-            animator.SetTrigger("Cast");
-            isCasting = true;
-        }
-
-        if (Input.GetKeyUp(ATTACK_KEY) && isCasting)
-        {
-            animator.SetTrigger("ReleaseSpell");
-        }
-
-
         if (isCasting)
         {
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-
-            bool isDecayState = stateInfo.IsName("Decay"); 
-            
-
-            if (isDecayState && stateInfo.normalizedTime >= 0.9f)
+            if (stateInfo.IsName("Wizard Decharge_Clip") && stateInfo.normalizedTime >= 0.95f)
             {
                 isCasting = false;
             }
         }
     }
-    
-
 }
